@@ -1,7 +1,7 @@
 import { KPICard } from './kpi-card'
 import { type KPIMetrics } from '@/lib/financial-types'
 import { formatCurrency, formatPercent } from '@/lib/financial-utils'
-import { TrendingUp, TrendingDown, DollarSign, BarChart2 } from 'lucide-react'
+import { TrendingUp, TrendingDown, DollarSign, BarChart2, ArrowLeftRight } from 'lucide-react'
 
 interface KPIRowProps {
   metrics: KPIMetrics | null
@@ -10,7 +10,7 @@ interface KPIRowProps {
 
 export function KPIRow({ metrics, loading }: KPIRowProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
       <KPICard
         label="Total Income"
         value={metrics ? formatCurrency(metrics.totalIncome) : '—'}
@@ -41,6 +41,14 @@ export function KPIRow({ metrics, loading }: KPIRowProps) {
         helperText="Profit as a percentage of total income"
         icon={BarChart2}
         variant="profitPercent"
+        loading={loading}
+      />
+      <KPICard
+        label="Total Movements"
+        value={metrics ? metrics.totalMovements.toString() : '—'}
+        helperText="Number of financial movements recorded"
+        icon={ArrowLeftRight}
+        variant="movements"
         loading={loading}
       />
     </div>

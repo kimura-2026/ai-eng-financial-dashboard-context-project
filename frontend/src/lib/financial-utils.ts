@@ -30,7 +30,13 @@ export function computeKPIs(movements: FinancialMovement[]): KPIMetrics {
   const profit = totalIncome - totalOutcome;
   const profitPercent = totalIncome > 0 ? (profit / totalIncome) * 100 : 0;
 
-  return { totalIncome, totalOutcome, profit, profitPercent };
+  return {
+    totalIncome,
+    totalOutcome,
+    profit,
+    profitPercent,
+    totalMovements: movements.length,
+  };
 }
 
 export function computeMonthlyData(

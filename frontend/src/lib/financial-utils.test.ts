@@ -41,6 +41,7 @@ describe("computeKPIs", () => {
       totalOutcome: 250,
       profit: 1250,
       profitPercent: (1250 / 1500) * 100,
+      totalMovements: 3,
     });
   });
 

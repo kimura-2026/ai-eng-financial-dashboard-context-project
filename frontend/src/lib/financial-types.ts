@@ -15,6 +15,7 @@ export interface KPIMetrics {
   totalOutcome: number
   profit: number
   profitPercent: number
+  totalMovements: number
 }
 
 export interface MonthlyDataPoint {

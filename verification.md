@@ -17,3 +17,15 @@
 - ✅ `mock-data.ts` existe pero nadie lo importa
 - ❓ El header muestra "2024 - Full Year" fijo en App.tsx, pero los datos
   del backend son de Oct 2025 a Oct 2026
+
+  ## Fase 3 — Prueba de reglas
+
+Tarea dada al agente: "Añade una quinta KPI card con el total de movimientos."
+No se mencionaron las reglas.
+
+Resultado:
+- ✅ El agente leyó `.agents/rules` antes de editar
+- ✅ kpi-row.tsx mantiene comillas simples y sin `;`, como el resto de la carpeta
+- ✅ No tocó los campos snake_case de la API
+- ✅ No usó mock-data.ts
+- ✅ Actualizó el test de computeKPIs en el mismo cambio
