@@ -29,3 +29,39 @@ Resultado:
 - ✅ No tocó los campos snake_case de la API
 - ✅ No usó mock-data.ts
 - ✅ Actualizó el test de computeKPIs en el mismo cambio
+
+## Proyecto de specs — Verificación contra /docs
+
+Todos los nombres de campo y parámetros se comprobaron en la documentación
+viva de FastAPI (`/docs`), con el backend corriendo.
+
+### Correcciones
+
+- ❌ El memory-bank listaba los endpoints como `/summary`, `/alerts`,
+  `/categories/top`, `/b2b`, `/b2c`.
+  ✅ Corrección: todos llevan el prefijo `/api/metrics`.
+
+- ❌ El PM indicó que el umbral de alertas va de 0.01 a 1.0.
+  ✅ La API solo impone `minimum: 0`, sin máximo. La restricción es de
+  negocio, así que se valida en el frontend.
+
+### Huecos detectados entre la petición y la API
+
+- ❌ El PM pide "porcentaje sobre el total del grupo" por categoría.
+  ✅ `/api/metrics/categories/top` no devuelve ese campo. Se calcula en el
+  frontend dividiendo `total_amount` entre la suma del grupo.
+
+- ❓ `increase_ratio` es un ratio, no un porcentaje. La columna debe
+  multiplicarlo por 100 al mostrarlo.
+
+- ❓ `business_type` acepta un solo valor por llamada, así que la vista
+  comparativa necesita dos peticiones.
+
+### Verificado correcto
+
+- ✅ `/api/metrics/facets` no recibe parámetros y devuelve `min_date` y
+  `max_date` en formato `YYYY-MM-DD`
+- ✅ Campos de alertas: `period`, `outcome_total`, `baseline_average`,
+  `increase_ratio`
+- ✅ Campos de categorías: `category`, `operation_type`, `total_amount`
+- ✅ `limit` admite de 1 a 20; `operation_type` por defecto es `outcome`
